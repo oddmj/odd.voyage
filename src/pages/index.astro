@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import { getPublishedBlogEntries } from "../content/blog/collection";
+
+const allBlogPosts = await getPublishedBlogEntries();
+---
+
+<html lang="en" class="text-lg">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>odd.voyage</title>
+  </head>
+  <body class="bg-paper">
+    <div class="max-w-screen-sm m-auto">
+      <div class="w-full text-center text-lg p-2">odd voyage</div>
+      <div class="flex flex-col gap-4">
+        {
+          allBlogPosts.map((post) => {
+            return (
+              <a href={`/posts/${post.slug}`}>
+                <div class="bg-white">
+                  <Image
+                    class="aspect-video object-cover"
+                    src={post.data.cover}
+                    alt="cover"
+                  />
+                  <p class="p-2 text-lg">{post.data.title}</p>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </body>
+</html>

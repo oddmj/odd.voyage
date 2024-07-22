@@ -9,7 +9,7 @@ const { frontmatter } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>
-      {`${frontmatter.artist} - ${frontmatter.title} | odd.voyage`}
+      {`${frontmatter.title} | odd.voyage`}
     </title>
   </head>
   <body class="bg-paper">
@@ -24,7 +24,7 @@ const { frontmatter } = Astro.props;
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
       <div class="p-4 text-center">
-        <p class="text-lg">{frontmatter.title}</p>
+        <p class="text-lg">{frontmatter.songTitle}</p>
         <p>{frontmatter.artist}</p>
         <br />
         <slot />

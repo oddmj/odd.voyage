@@ -1,0 +1,33 @@
+---
+const { frontmatter } = Astro.props;
+---
+
+<html lang="en" class="text-lg">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>
+      {`${frontmatter.title} | odd.voyage`}
+    </title>
+  </head>
+  <body class="bg-paper">
+    <div class="max-w-screen-sm m-auto">
+      <div class="w-full text-center text-lg p-2">odd voyage</div>
+      <div class="p-4">
+        <p class="text-lg text-center">{frontmatter.title}</p>
+        <br />
+        <div class="content">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  .content > :global(p) {
+    margin-bottom: 1.20rem;
+  }
+</style>

@@ -1,16 +1,38 @@
 ---
+import { Image } from "astro:assets";
+import { getPublishedBlogEntries } from "../content/blog/collection";
 
+const allBlogPosts = await getPublishedBlogEntries();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="en" class="text-lg">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>odd.voyage</title>
+  </head>
+  <body class="bg-paper">
+    <div class="max-w-screen-sm m-auto">
+      <div class="w-full text-center text-lg p-2">
+        <a href="/">odd voyage</a>
+      </div>
+      <div class="flex flex-col gap-4 p-2">
+        <ul>
+        {
+          allBlogPosts.map((post) => {
+            return (
+              <a href={`/posts/${post.slug}`}>
+                <div>
+                  <span>{post.data.title}</span>
+                  <span class="text-sm text-orange-900">_{post.data.publishDate}</span>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </body>
 </html>

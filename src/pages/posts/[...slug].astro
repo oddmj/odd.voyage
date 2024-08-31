@@ -1,4 +1,5 @@
 ---
+import Basic from "../../layouts/Basic.astro";
 import { getPublishedBlogEntries } from "../../content/blog/collection";
 
 export async function getStaticPaths() {
@@ -14,4 +15,18 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Content />
+<Basic title={entry.data.title}>
+  <div class="p-4">
+    <p class="text-lg text-center">{entry.data.title}</p>
+    <br />
+    <div class="content">
+      <Content />
+    </div>
+  </div>
+</Basic>
+
+<style>
+  .content > :global(p) {
+    margin-bottom: 1.2rem;
+  }
+</style>

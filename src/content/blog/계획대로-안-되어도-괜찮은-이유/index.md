@@ -1,5 +1,4 @@
 ---
-layout: "../../../layouts/BlogLayout.astro"
 title: "계획대로 안 되어도 괜찮은 이유"
 publishDate: "2024.08.17"
 ---

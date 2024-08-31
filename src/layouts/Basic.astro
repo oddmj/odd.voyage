@@ -1,5 +1,7 @@
 ---
-const { frontmatter } = Astro.props;
+const { title } = Astro.props;
+
+const documentTitle = title ? `${title} | odd voyage` : "odd voyage";
 ---
 
 <html lang="en" class="text-lg">
@@ -12,28 +14,14 @@ const { frontmatter } = Astro.props;
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>
-      {`${frontmatter.title} | odd.voyage`}
-    </title>
+    <title>{documentTitle}</title>
   </head>
   <body class="bg-white">
     <div class="max-w-screen-sm m-auto min-h-screen bg-paper">
       <div class="w-full text-center text-lg p-2">
         <a href="/">odd voyage</a>
       </div>
-      <div class="p-4">
-        <p class="text-lg text-center">{frontmatter.title}</p>
-        <br />
-        <div class="content">
-          <slot />
-        </div>
-      </div>
+      <slot />
     </div>
   </body>
 </html>
-
-<style>
-  .content > :global(p) {
-    margin-bottom: 1.2rem;
-  }
-</style>

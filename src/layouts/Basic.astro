@@ -23,5 +23,17 @@ const documentTitle = title ? `${title} | odd voyage` : "odd voyage";
       </div>
       <slot />
     </div>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BV2VKP948Q"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer!.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-BV2VKP948Q");
+    </script>
   </body>
 </html>

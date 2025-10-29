@@ -1,0 +1,51 @@
+---
+import { Font } from 'astro:assets';
+import Parser from 'rss-parser';
+import '../styles/global.css';
+
+const parser = new Parser();
+
+const feed = await parser.parseURL('https://brunch.co.kr/rss/@@7vHu');
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>odd.voyage</title>
+    <Font cssVariable="--font-sorts-mill-goudy" preload />
+    <Font cssVariable="--font-pretendard" preload />
+  </head>
+  <body>
+    <div class="mx-auto max-w-md">
+      <header class="flex justify-center py-1">
+        <span class="font-(family-name:--font-sorts-mill-goudy) text-lg"
+          >odd.voyage</span
+        >
+      </header>
+      <main class="px-4 font-(family-name:--font-pretendard)">
+        <span>글</span>
+        <ul class="list-inside list-disc">
+          {
+            feed.items.map((item) => (
+              <li>
+                <a href={item.link}>{item.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+        <span>링크</span>
+        <ul class="list-inside list-disc">
+          <li>
+            <a href="https://public.odd.voyage">second brain</a>
+          </li>
+          <li>
+            <a href="https://github.com/oddmj">github</a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

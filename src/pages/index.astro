@@ -2,7 +2,9 @@
 import { Font } from 'astro:assets';
 import Parser from 'rss-parser';
 import '../styles/global.css';
-import { GA_ID } from 'astro:env/server';
+import GA4 from '@components/GA4.astro';
+
+const isProd = import.meta.env.PROD;
 
 const parser = new Parser();
 
@@ -37,17 +39,7 @@ const feeds = rssResults
     <title>odd.voyage</title>
     <Font cssVariable="--font-sorts-mill-goudy" preload />
     <Font cssVariable="--font-pretendard" preload />
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-    ></script>
-    <script is:inline define:vars={{ gaId: GA_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', gaId);
-    </script>
+    {isProd && <GA4 />}
   </head>
   <body>
     <div class="mx-auto max-w-md">
